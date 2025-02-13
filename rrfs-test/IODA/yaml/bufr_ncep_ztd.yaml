@@ -1,4 +1,4 @@
-# (C) Copyright 2024 NOAA/NWS/NCEP/EMC
+# (C) Copyright 2025 NOAA/NWS/NCEP/EMC
 #
 # This software is licensed under the terms of the Apache Licence Version 2.0
 # which can be obtained at http://www.apache.org/licenses/LICENSE-2.0.
@@ -29,7 +29,6 @@ observations:
             query: "*/CLONH"
           stationElevation:
             query: "*/SELV"
-#           type: float
           height:
             query: "*/SELV"
           pressure:
@@ -45,7 +44,7 @@ observations:
           zenithTotalDelayErr:
             query: "*/GNSSRPSQ{1}/APDE"
 
-          # PreQC
+          # QualityMarker 
           zenithTotalDelayQC:
             query: "*/GNSSRPSQ{1}/APDE"
             transforms:
@@ -55,10 +54,6 @@ observations:
           zenithTotalDelay:
             query: "*/GNSSRPSQ{1}/APDS"
           
-          # QualityMarker 
-          zenithTotalDelayQM:
-            query: "*/QFGN"
-
     ioda:
       backend: netcdf
       obsdataout: "./2024052700.rap.t00z.ztd.tm00.bufr_d.nc"
@@ -143,17 +138,10 @@ observations:
           units: "m"
           range: [0.0, 10.0]
 
-        # QualityMarker
+        # QualityMarker 
         - name: "QualityMarker/zenithTotalDelay"
           coordinates: "longitude latitude"
-          source: variables/zenithTotalDelayQM
-          longName: "Quality Flags for ground-based GNSS data"
-          units: "bit 1-10"
-
-        # QC
-        - name: "PreQC/zenithTotalDelay"
-          coordinates: "longitude latitude"
           source: variables/zenithTotalDelayQC
-          longName: "Quality Control Flags for ground-based GNSS data"
+          longName: "Quality Flags for ZTD data"
           units: "0-20"
 
