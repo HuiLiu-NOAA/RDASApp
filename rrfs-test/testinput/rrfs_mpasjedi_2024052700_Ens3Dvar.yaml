@@ -71,11 +71,11 @@ cost function:
          name: aircar
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_aircar_dc.nc"
+             obsfile: "data/obs/ioda_aircar_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -173,6 +173,8 @@ cost function:
            - name: airTemperature
            minvalue: 100
            maxvalue: 400
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -193,6 +195,8 @@ cost function:
                  name: MetaData/timeOffset
                minvalue: -0.75
                maxvalue: 0.75
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -200,6 +204,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -219,11 +225,11 @@ cost function:
          name: aircar
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_aircar_dc.nc"
+             obsfile: "data/obs/ioda_aircar_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -393,6 +399,8 @@ cost function:
              is_in: 233
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -419,6 +427,8 @@ cost function:
              is_in: 233
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -426,6 +436,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -448,11 +460,11 @@ cost function:
          name: aircar
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_aircar_dc.nc"
+             obsfile: "data/obs/ioda_aircar_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -562,6 +574,8 @@ cost function:
            - name: specificHumidity
            minvalue: 0.0
            maxvalue: 1.0
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -582,6 +596,8 @@ cost function:
                  name: MetaData/timeOffset
                minvalue: -0.75
                maxvalue: 0.75
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -589,6 +605,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -608,11 +626,11 @@ cost function:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -710,6 +728,8 @@ cost function:
            - name: airTemperature
            minvalue: 100
            maxvalue: 400
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -730,6 +750,8 @@ cost function:
                  name: MetaData/timeOffset
                minvalue: -0.75
                maxvalue: 0.75
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -737,6 +759,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -756,11 +780,11 @@ cost function:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -858,6 +882,8 @@ cost function:
            - name: airTemperature
            minvalue: 100
            maxvalue: 400
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -878,6 +904,8 @@ cost function:
                  name: MetaData/timeOffset
                minvalue: -1.00
                maxvalue: 1.00
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -885,6 +913,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -904,11 +934,11 @@ cost function:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -1006,6 +1036,8 @@ cost function:
            - name: airTemperature
            minvalue: 100
            maxvalue: 400
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -1026,6 +1058,8 @@ cost function:
                  name: MetaData/timeOffset
                minvalue: -0.75
                maxvalue: 0.75
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -1033,6 +1067,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -1052,11 +1088,11 @@ cost function:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -1154,6 +1190,8 @@ cost function:
            - name: airTemperature
            minvalue: 100
            maxvalue: 400
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -1174,6 +1212,8 @@ cost function:
                  name: MetaData/timeOffset
                minvalue: -0.75
                maxvalue: 0.75
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -1181,6 +1221,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -1200,11 +1242,11 @@ cost function:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -1314,6 +1356,8 @@ cost function:
            - name: specificHumidity
            minvalue: 0.0
            maxvalue: 1.0
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -1334,6 +1378,8 @@ cost function:
                  name: MetaData/timeOffset
                minvalue: -0.75
                maxvalue: 0.75
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -1341,6 +1387,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -1360,11 +1408,11 @@ cost function:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -1534,6 +1582,8 @@ cost function:
              is_in: 230
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -1560,6 +1610,8 @@ cost function:
              is_in: 230
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -1567,6 +1619,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -1589,11 +1643,11 @@ cost function:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -1763,6 +1817,8 @@ cost function:
              is_in: 231
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -1789,6 +1845,8 @@ cost function:
              is_in: 231
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -1796,6 +1854,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -1818,11 +1878,11 @@ cost function:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -1992,6 +2052,8 @@ cost function:
              is_in: 234
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -2018,6 +2080,8 @@ cost function:
              is_in: 234
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -2025,6 +2089,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -2047,11 +2113,11 @@ cost function:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -2221,6 +2287,8 @@ cost function:
              is_in: 235
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -2247,6 +2315,8 @@ cost function:
              is_in: 235
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -2254,6 +2324,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -2276,11 +2348,11 @@ cost function:
          name: msonet
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_msonet_dc.nc"
+             obsfile: "data/obs/ioda_msonet_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -2373,6 +2445,8 @@ cost function:
            - name: airTemperature
            minvalue: 100
            maxvalue: 400
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -2393,6 +2467,8 @@ cost function:
                  name: MetaData/timeOffset
                minvalue: -0.10
                maxvalue: 0.10
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -2400,6 +2476,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -2419,11 +2497,11 @@ cost function:
          name: msonet
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_msonet_dc.nc"
+             obsfile: "data/obs/ioda_msonet_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -2517,6 +2595,8 @@ cost function:
            - name: specificHumidity
            minvalue: 0.0
            maxvalue: 1.0
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -2537,6 +2617,8 @@ cost function:
                  name: MetaData/timeOffset
                minvalue: -0.10
                maxvalue: 0.10
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -2544,6 +2626,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -2563,11 +2647,11 @@ cost function:
          name: msonet
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_msonet_dc.nc"
+             obsfile: "data/obs/ioda_msonet_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -2658,6 +2742,8 @@ cost function:
            - name: stationPressure
            minvalue: 0.0
            maxvalue: 120000.0
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -2678,6 +2764,8 @@ cost function:
                  name: MetaData/timeOffset
                minvalue: -0.10
                maxvalue: 0.10
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -2685,6 +2773,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -2704,11 +2794,11 @@ cost function:
          name: msonet
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/ioda_msonet_dc.nc"
+             obsfile: "data/obs/ioda_msonet_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -2866,6 +2956,8 @@ cost function:
              is_in: 288
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -2892,6 +2984,8 @@ cost function:
              is_in: 288
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -2899,6 +2993,8 @@ cost function:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -2921,11 +3017,11 @@ cost function:
          name: atms_npp
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "data/obs_ctest/atms_npp_obs_2024052700.nc"
+             obsfile: "data/obs/atms_npp_obs_2024052700_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -2949,14 +3045,14 @@ cost function:
            lengthscale: 300e3 # orig
 
        obs bias:
-         input file:  data/obs_ctest/atms_npp.satbias.nc4
+         input file:  data/obs/atms_npp.satbias.nc4
          output file: ./out_atms_npp.satbias.nc
          variational bc:
            predictors:
            - name: constant
            - name: lapseRate
              order: 2
-             tlapse: &atms_npp_tlapse  data/obs_ctest/atms_npp.tlapse.txt
+             tlapse: &atms_npp_tlapse  data/obs/atms_npp.tlapse.txt
            - name: lapseRate
              tlapse: *atms_npp_tlapse
            - name: emissivityJacobian
@@ -2973,7 +3069,7 @@ cost function:
            step size: 1.0e-4
            largest analysis variance: 10000.0
            prior:
-             input file: data/obs_ctest/atms_npp.satbias_cov.nc4
+             input file: data/obs/atms_npp.satbias_cov.nc4
              inflation:
                ratio: 1.1
                ratio for small dataset: 2.0

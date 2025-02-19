@@ -2,7 +2,7 @@
          name: adpsfc_winds_287
          distribution:
            name: "@DISTRIBUTION@"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
@@ -10,7 +10,7 @@
          obsdataout:
            engine:
              type: H5File
-             obsfile: hofx_adpsfc_winds_287.nc4
+             obsfile: jdiag_adpsfc_winds_287.nc4
              allow overwrite: true
          io pool:
            max pool size: 1
@@ -56,6 +56,8 @@
            where:
            - variable: QualityMarker/windEastward
              is_in: 4-15
+           action:
+             name: reduce obs space
 
          # Time window filter
          - filter: Domain Check
@@ -65,6 +67,8 @@
                name: MetaData/timeOffset
              minvalue: -900
              maxvalue:  900
+           action:
+             name: reduce obs space
 
          # Online domain check
          - filter: Bounds Check
@@ -75,6 +79,19 @@
            - name:  GeoVaLs/observable_domain_mask
            minvalue: 0.0
            maxvalue: 0.5
+
+         # Duplicate Check
+         - filter: Temporal Thinning
+           apply at iterations: 0,1
+           filter variables:
+           - name: windEastward
+           - name: windNorthward
+           min_spacing: PT90M
+           seed_time: "2024-05-27T00:00:00Z"
+           category_variable:
+             name: MetaData/longitude_latitude_pressure
+           action:
+             name: reduce obs space
 
          # Initial error assignment
          - filter: Perform Action
@@ -140,6 +157,8 @@
            maxvalue: 130
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          # Gross Error Check (windEastward)
          - filter: Background Check
@@ -219,15 +238,6 @@
              is_in: 3
            action:
              name: reject
-           defer to post: true
-
-         # Duplicate Check
-         - filter: Temporal Thinning
-           apply at iterations: 0,1
-           min_spacing: PT30M
-           seed_time: *analysisDate
-           category_variable:
-             name: MetaData/stationIdentification
            defer to post: true
 
          #- filter: GOMsaver

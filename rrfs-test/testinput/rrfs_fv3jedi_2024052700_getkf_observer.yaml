@@ -1,6 +1,6 @@
 time window:
-       begin: &analysisDate 2024-05-26T23:00:00Z
-       length: PT2H
+       begin: 2024-05-26T21:00:00Z
+       length: PT6H
 increment variables: [eastward_wind,northward_wind,air_temperature,air_pressure_thickness,water_vapor_mixing_ratio_wrt_moist_air,cloud_liquid_ice,cloud_liquid_water,ozone_mass_mixing_ratio]
 geometry:
   fms initialization:
@@ -19,13 +19,13 @@ geometry:
 
 
 background:
-  datetime: 2024-05-27T00:00:00Z
+  datetime: &analysisDate 2024-05-27T00:00:00Z
   filetype: fms restart
   members from template:
       template:
         datetime: 2024-05-27T00:00:00Z
         filetype: fms restart
-        state variables: [eastward_wind,northward_wind,air_temperature,air_pressure_thickness,water_vapor_mixing_ratio_wrt_moist_air,cloud_liquid_ice,cloud_liquid_water,ozone_mass_mixing_ratio,phis,f10m]
+        state variables: [eastward_wind,northward_wind,u_component_of_native_D_grid_wind,v_component_of_native_D_grid_wind,air_temperature,air_pressure_thickness,water_vapor_mixing_ratio_wrt_moist_air,cloud_liquid_ice,cloud_liquid_water,ozone_mass_mixing_ratio,phis,f10m,slmsk,sheleg,ts,vtype,stype,vfrac,soilt,soilm,u_srf,v_srf]
         datapath: Data/inputs/mem%mem%/
         filename_core: 20240527.000000.fv_core.res.tile1.nc
         filename_trcr: 20240527.000000.fv_tracer.res.tile1.nc
@@ -42,11 +42,11 @@ observations:
          name: aircar
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_aircar_dc.nc"
+             obsfile: "Data/obs/ioda_aircar_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -144,6 +144,8 @@ observations:
            - name: airTemperature
            minvalue: 100
            maxvalue: 400
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -164,6 +166,8 @@ observations:
                  name: MetaData/timeOffset
                minvalue: -0.75
                maxvalue: 0.75
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -171,6 +175,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -190,11 +196,11 @@ observations:
          name: aircar
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_aircar_dc.nc"
+             obsfile: "Data/obs/ioda_aircar_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -364,6 +370,8 @@ observations:
              is_in: 233
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -390,6 +398,8 @@ observations:
              is_in: 233
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -397,6 +407,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -419,11 +431,11 @@ observations:
          name: aircar
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_aircar_dc.nc"
+             obsfile: "Data/obs/ioda_aircar_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -533,6 +545,8 @@ observations:
            - name: specificHumidity
            minvalue: 0.0
            maxvalue: 1.0
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -553,6 +567,8 @@ observations:
                  name: MetaData/timeOffset
                minvalue: -0.75
                maxvalue: 0.75
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -560,6 +576,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -579,11 +597,11 @@ observations:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "Data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -681,6 +699,8 @@ observations:
            - name: airTemperature
            minvalue: 100
            maxvalue: 400
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -701,6 +721,8 @@ observations:
                  name: MetaData/timeOffset
                minvalue: -0.75
                maxvalue: 0.75
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -708,6 +730,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -727,11 +751,11 @@ observations:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "Data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -829,6 +853,8 @@ observations:
            - name: airTemperature
            minvalue: 100
            maxvalue: 400
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -849,6 +875,8 @@ observations:
                  name: MetaData/timeOffset
                minvalue: -1.00
                maxvalue: 1.00
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -856,6 +884,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -875,11 +905,11 @@ observations:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "Data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -977,6 +1007,8 @@ observations:
            - name: airTemperature
            minvalue: 100
            maxvalue: 400
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -997,6 +1029,8 @@ observations:
                  name: MetaData/timeOffset
                minvalue: -0.75
                maxvalue: 0.75
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -1004,6 +1038,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -1023,11 +1059,11 @@ observations:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "Data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -1125,6 +1161,8 @@ observations:
            - name: airTemperature
            minvalue: 100
            maxvalue: 400
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -1145,6 +1183,8 @@ observations:
                  name: MetaData/timeOffset
                minvalue: -0.75
                maxvalue: 0.75
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -1152,6 +1192,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -1171,11 +1213,11 @@ observations:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "Data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -1285,6 +1327,8 @@ observations:
            - name: specificHumidity
            minvalue: 0.0
            maxvalue: 1.0
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -1305,6 +1349,8 @@ observations:
                  name: MetaData/timeOffset
                minvalue: -0.75
                maxvalue: 0.75
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -1312,6 +1358,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -1331,11 +1379,11 @@ observations:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "Data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -1505,6 +1553,8 @@ observations:
              is_in: 230
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -1531,6 +1581,8 @@ observations:
              is_in: 230
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -1538,6 +1590,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -1560,11 +1614,11 @@ observations:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "Data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -1734,6 +1788,8 @@ observations:
              is_in: 231
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -1760,6 +1816,8 @@ observations:
              is_in: 231
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -1767,6 +1825,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -1789,11 +1849,11 @@ observations:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "Data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -1963,6 +2023,8 @@ observations:
              is_in: 234
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -1989,6 +2051,8 @@ observations:
              is_in: 234
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -1996,6 +2060,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -2018,11 +2084,11 @@ observations:
          name: aircft
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_aircft_dc.nc"
+             obsfile: "Data/obs/ioda_aircft_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -2192,6 +2258,8 @@ observations:
              is_in: 235
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -2218,6 +2286,8 @@ observations:
              is_in: 235
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -2225,6 +2295,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -2247,11 +2319,11 @@ observations:
          name: msonet
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_msonet_dc.nc"
+             obsfile: "Data/obs/ioda_msonet_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -2344,6 +2416,8 @@ observations:
            - name: airTemperature
            minvalue: 100
            maxvalue: 400
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -2364,6 +2438,8 @@ observations:
                  name: MetaData/timeOffset
                minvalue: -0.10
                maxvalue: 0.10
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -2371,6 +2447,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -2390,11 +2468,11 @@ observations:
          name: msonet
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_msonet_dc.nc"
+             obsfile: "Data/obs/ioda_msonet_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -2488,6 +2566,8 @@ observations:
            - name: specificHumidity
            minvalue: 0.0
            maxvalue: 1.0
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -2508,6 +2588,8 @@ observations:
                  name: MetaData/timeOffset
                minvalue: -0.10
                maxvalue: 0.10
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -2515,6 +2597,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -2534,11 +2618,11 @@ observations:
          name: msonet
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_msonet_dc.nc"
+             obsfile: "Data/obs/ioda_msonet_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -2629,6 +2713,8 @@ observations:
            - name: stationPressure
            minvalue: 0.0
            maxvalue: 120000.0
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -2649,6 +2735,8 @@ observations:
                  name: MetaData/timeOffset
                minvalue: -0.10
                maxvalue: 0.10
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -2656,6 +2744,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -2675,11 +2765,11 @@ observations:
          name: msonet
          distribution:
            name: "RoundRobin"
-           halo size: 100e3
+           halo size: 300e3
          obsdatain:
            engine:
              type: H5File
-             obsfile: "Data/obs_ctest/ioda_msonet_dc.nc"
+             obsfile: "Data/obs/ioda_msonet_dc.nc"
          obsdataout:
            engine:
              type: H5File
@@ -2837,6 +2927,8 @@ observations:
              is_in: 288
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Background Check
            apply at iterations: 0,1
@@ -2863,6 +2955,8 @@ observations:
              is_in: 288
            action:
              name: reject
+           action:
+             name: reduce obs space
 
          - filter: Temporal Thinning
            apply at iterations: 0,1
@@ -2870,6 +2964,8 @@ observations:
            seed_time: *analysisDate
            category_variable:
              name: MetaData/stationIdentification
+           action:
+             name: reduce obs space
 
          ## Print filter data
          #- filter: Print Filter Data
@@ -2888,6 +2984,592 @@ observations:
 
          #- filter: GOMsaver
          #  filename: ./data/geovals/msonet_geovals_rrfs.nc4
+         #
+     - obs space:
+         name: atms_npp
+         distribution:
+           name: "RoundRobin"
+           halo size: 300e3
+         obsdatain:
+           engine:
+             type: H5File
+             obsfile: "Data/obs/atms_npp_obs_2024052700_dc.nc"
+         obsdataout:
+           engine:
+             type: H5File
+             obsfile: rass_atms_obs_2024052700.nc4
+         simulated variables: [brightnessTemperature]
+         observed variables: [brightnessTemperature]
+         channels: &atms_npp_channels 1-22
+       obs operator:
+           name: CRTM
+           Absorbers: [H2O,O3]
+           SurfaceWindGeoVars: uv
+           obs options:
+             Sensor_ID: atms_npp
+             EndianType: little_endian
+             CoefficientPath: Data/crtm/
+             IRVISlandCoeff: IGBP
+           linear obs operator:
+             Absorbers: [H2O, O3]
+       obs localizations:
+         - localization method: Horizontal Gaspari-Cohn
+           lengthscale: 300e3 # orig
+
+       obs bias:
+         input file:  Data/obs/atms_npp.satbias.nc4
+         output file: ./out_atms_npp.satbias.nc
+         variational bc:
+           predictors:
+           - name: constant
+           - name: lapseRate
+             order: 2
+             tlapse: &atms_npp_tlapse  Data/obs/atms_npp.tlapse.txt
+           - name: lapseRate
+             tlapse: *atms_npp_tlapse
+           - name: emissivityJacobian
+           - name: sensorScanAngle
+             order: 4
+           - name: sensorScanAngle
+             order: 3
+           - name: sensorScanAngle
+             order: 2
+           - name: sensorScanAngle
+         covariance:
+           minimal required obs number: 20
+           variance range: [1.0e-6, 10.0]
+           step size: 1.0e-4
+           largest analysis variance: 10000.0
+           prior:
+             input file: Data/obs/atms_npp.satbias_cov.nc4
+             inflation:
+               ratio: 1.1
+               ratio for small dataset: 2.0
+           output file: ./out_atms_npp.satbias_cov.nc
+
+       obs pre filters:
+       # Step 0-A: Create Diagnostic Flags
+       - filter: Create Diagnostic Flags
+         filter variables:
+         - name: brightnessTemperature
+           channels: *atms_npp_channels
+         flags:
+         - name: ScanEdgeRemoval
+           initial value: false
+           force reinitialization: false
+         - name: Thinning
+           initial value: false
+           force reinitialization: false
+         - name: CLWRetrievalCheck
+           initial value: false
+           force reinitialization: false
+         - name: WindowChannelExtremeResidual
+           initial value: false
+           force reinitialization: false
+         - name: HydrometeorCheck
+           initial value: false
+           force reinitialization: false
+         - name: GrossCheck
+           initial value: false
+           force reinitialization: false
+         - name: InterChannelConsistency
+           initial value: false
+           force reinitialization: false
+         - name: UseflagCheck
+           initial value: false
+           force reinitialization: false
+
+       obs post filters:
+       # Step 0-B: Calculate derived variables
+       # Calculate CLW retrieved from observation
+       - filter: Variable Assignment
+         assignments:
+         - name: CLWRetFromObs@DerivedMetaData
+           type: float
+           function:
+             name: CLWRetMW@ObsFunction
+             options:
+               clwret_ch238: 1
+               clwret_ch314: 2
+               clwret_types: [ObsValue]
+
+       # Calculate CLW retrieved from observation
+       - filter: Variable Assignment
+         assignments:
+         - name: CLWRetFromBkg@DerivedMetaData
+           type: float
+           function:
+             name: CLWRetMW@ObsFunction
+             options:
+               clwret_ch238: 1
+               clwret_ch314: 2
+               clwret_types: [HofX]
+
+       # Calculate symmetric retrieved CLW
+       - filter: Variable Assignment
+         assignments:
+         - name: CLWRetSymmetric@DerivedMetaData
+           type: float
+           value: 1000.0
+
+       - filter: Variable Assignment
+         where:
+         - variable:
+             name: CLWRetFromObs@DerivedMetaData
+           minvalue:   0.
+           maxvalue: 999.
+         - variable:
+             name: CLWRetFromBkg@DerivedMetaData
+           minvalue:   0.
+           maxvalue: 999.
+         where operator: and
+         assignments:
+         - name: CLWRetSymmetric@DerivedMetaData
+           type: float
+           function:
+             name: Arithmetic@ObsFunction
+             options:
+               variables:
+               - name: CLWRetFromObs@DerivedMetaData
+               - name: CLWRetFromBkg@DerivedMetaData
+               total coefficient: 0.5
+
+       # Calculate scattering index from observation
+       - filter: Variable Assignment
+         assignments:
+         - name: SIRetFromObs@DerivedMetaData
+           type: float
+           function:
+             name: SCATRetMW@ObsFunction
+             options:
+               scatret_ch238: 1
+               scatret_ch314: 2
+               scatret_ch890: 16
+               scatret_types: [ObsValue]
+
+       # Calculate CLW obs/bkg match index
+       - filter: Variable Assignment
+         assignments:
+         - name: CLWMatchIndex@DerivedMetaData
+           channels: *atms_npp_channels
+           type: float
+           function:
+             name: CLWMatchIndexMW@ObsFunction
+             channels: *atms_npp_channels
+             options:
+               channels: *atms_npp_channels
+               clwobs_function:
+                 name: CLWRetFromObs@DerivedMetaData
+               clwbkg_function:
+                 name: CLWRetFromBkg@DerivedMetaData
+               clwret_clearsky: [ 0.030,  0.030,  0.030,  0.020,  0.030,
+                                  0.080,  0.150,  0.000,  0.000,  0.000,
+                                  0.000,  0.000,  0.000,  0.000,  0.000,
+                                  0.020,  0.030,  0.030,  0.030,  0.030,
+                                  0.050,  0.100]
+       # Calculate symmetric observation error
+       - filter: Variable Assignment
+         assignments:
+         - name: InitialObsError@DerivedMetaData
+           channels: *atms_npp_channels
+           type: float
+           function:
+             name: ObsErrorModelRamp@ObsFunction
+             channels: *atms_npp_channels
+             options:
+               channels: *atms_npp_channels
+               xvar:
+                 name: CLWRetSymmetric@DerivedMetaData
+               x0:    [ 0.030,  0.030,  0.030,  0.020,  0.030,
+                        0.080,  0.150,  0.000,  0.000,  0.000,
+                        0.000,  0.000,  0.000,  0.000,  0.000,
+                        0.020,  0.030,  0.030,  0.030,  0.030,
+                        0.050,  0.100]
+               x1:    [ 0.350,  0.380,  0.400,  0.450,  0.500,
+                        1.000,  1.000,  0.000,  0.000,  0.000,
+                        0.000,  0.000,  0.000,  0.000,  0.000,
+                        0.350,  0.500,  0.500,  0.500,  0.500,
+                        0.500,  0.500]
+               err0:  [ 4.500,  4.500,  4.500,  2.500,  0.550,
+                        0.300,  0.300,  0.400,  0.400,  0.400,
+                        0.450,  0.450,  0.550,  0.800,  4.000,
+                        4.000,  4.000,  3.500,  3.000,  3.000,
+                        3.000,  3.000]
+               err1:  [20.000, 25.000, 12.000,  7.000,  3.500,
+                        3.000,  0.800,  0.400,  0.400,  0.400,
+                        0.450,  0.450,  0.550,  0.800,  4.000,
+                       19.000, 30.000, 25.000, 16.500, 12.000,
+                        9.000,  6.500]
+
+       # Calculate Innovation@DerivedMetaData
+       - filter: Variable Assignment
+         assignments:
+         - name: Innovation@DerivedMetaData
+           channels: *atms_npp_channels
+           type: float
+           function:
+             name: ObsFunction/Arithmetic
+             channels: *atms_npp_channels
+             options:
+               variables:
+               - name: brightnessTemperature@ObsValue
+                 channels: *atms_npp_channels
+               - name: brightnessTemperature@HofX
+                 channels: *atms_npp_channels
+               coefs: [1, -1]
+
+       - filter: Bounds Check
+         filter variables:
+         #- name: brightnessTemperature
+         - name: HofX/brightnessTemperature
+           channels: *atms_npp_channels
+         minvalue: 50.00001
+         maxvalue: 449.99999
+         action:
+           name: reject
+
+       # Regional Domain Check
+       - filter: Bounds Check
+         fileter variables:
+         - name: brightnessTemperature
+         test variables:
+         - name: LAMDomainCheck@ObsFunction
+           options: 
+             map_projection: circle
+             save: true
+             cenlat: 38.5 
+             cenlon: -97.5
+             #radius: 1700 #km
+             radius: 2500 #km
+         minvalue: 1.0
+
+       # Step 0-C: Assign Initial All-Sky Observation Error
+       - filter: Perform Action
+         filter variables:
+         - name: brightnessTemperature
+           channels: *atms_npp_channels
+         action:
+           name: assign error
+           error function:
+             name: InitialObsError@DerivedMetaData
+             channels: *atms_npp_channels
+
+
+       # Step 1: Remove Observations from the Edge of the Scan
+       - filter: Domain Check
+         filter variables:
+         - name: brightnessTemperature
+           channels: 1-22
+         where:
+         - variable:
+             name: MetaData/sensorScanPosition
+           is_in: 7-90
+         actions:
+           - name: set
+             flag: ScanEdgeRemoval
+           - name: reject
+
+       # Step 2: data Thinning
+       - filter: Gaussian Thinning
+         horizontal_mesh: 145
+         use_reduced_horizontal_grid: true
+         distance_norm: geodesic
+       #  round_horizontal_bin_count_to_nearest: true
+       #  partition_longitude_bins_using_mesh: true
+         actions:
+           - name: set
+             flag: Thinning
+           - name: reject
+
+       # Step 3A: CLW Retrieval Check (observation_based)
+       - filter: Bounds Check
+         filter variables:
+         - name: brightnessTemperature
+           channels: 1-7, 16-22
+         test variables:
+         - name: CLWRetFromObs@DerivedMetaData
+         maxvalue: 999.0
+         actions:
+           - name: set
+             flag: CLWRetrievalCheck
+           - name: reject
+
+       # Step 3B: CLW Retrieval Check (background_based)
+       - filter: Bounds Check
+         filter variables:
+         - name: brightnessTemperature
+           channels: 1-7, 16-22
+         test variables:
+         - name: CLWRetFromBkg@DerivedMetaData
+         maxvalue: 999.0
+         actions:
+           - name: set
+             flag: CLWRetrievalCheck
+           - name: reject
+
+       # Step 4: Window Channel Sanity Check
+       - filter: Bounds Check
+         filter variables:
+         - name: brightnessTemperature
+           channels: 1-7, 16, 17-22
+         test variables:
+         - name: Innovation@DerivedMetaData
+           channels: 1, 2, 5-7, 16
+         maxvalue: 200.0
+         minvalue: -200.0
+         flag all filter variables if any test variable is out of bounds: true
+         actions:
+           - name: set
+             flag: WindowChannelExtremeResidual
+           - name: reject
+
+       # Step 5: Hydrometeor Check (cloud/precipitation affected chanels)
+       - filter: Variable Assignment
+         assignments:
+         - name: DerivedMetaData/HydrometeorCheckATMS
+           channels: *atms_npp_channels
+           type: float
+           function:
+             name: HydrometeorCheckATMS@ObsFunction
+             channels: *atms_npp_channels
+             options:
+               channels: *atms_npp_channels
+               obserr_clearsky:  [ 4.500,  4.500,  4.500,  2.500,  0.550,
+                                   0.300,  0.300,  0.400,  0.400,  0.400,
+                                   0.450,  0.450,  0.550,  0.800,  4.000,
+                                   4.000,  4.000,  3.500,  3.000,  3.000,
+                                   3.000,  3.000]
+               clwret_function:
+                 name: CLWRetFromObs@DerivedMetaData
+               obserr_function:
+                 name: InitialObsError@DerivedMetaData
+                 channels: *atms_npp_channels
+
+       - filter: Bounds Check
+         filter variables:
+         - name: brightnessTemperature
+           channels: *atms_npp_channels
+         test variables:
+         - name: DerivedMetaData/HydrometeorCheckATMS
+           channels: *atms_npp_channels
+         maxvalue: 0.0
+         actions:
+           - name: set
+             flag: HydrometeorCheck
+             ignore: rejected observations
+           - name: reject
+
+       # Step 6: Observation Error Inflation based on Topography Check
+       - filter: Variable Assignment
+         assignments:
+         - name: ObsErrorFactorTopo@DerivedMetaData
+           channels: *atms_npp_channels
+           type: float
+           function:
+             name: ObsErrorFactorTopoRad@ObsFunction
+             channels: *atms_npp_channels
+             options:
+               sensor: atms_npp
+               channels: *atms_npp_channels
+
+       - filter: Perform Action
+         filter variables:
+         - name: brightnessTemperature
+           channels: *atms_npp_channels
+         action:
+           name: inflate error
+           inflation variable:
+             name: ObsErrorFactorTopo@DerivedMetaData
+             channels: *atms_npp_channels
+
+       # Step 7: Obs Error Inflation based on TOA Transmittancec Check
+       - filter: Variable Assignment
+         assignments:
+         - name: ObsErrorFactorTransmitTop@DerivedMetaData
+           channels: *atms_npp_channels
+           type: float
+           function:
+             name: ObsErrorFactorTransmitTopRad@ObsFunction
+             channels: *atms_npp_channels
+             options:
+               channels: *atms_npp_channels
+
+       - filter: Perform Action
+         filter variables:
+         - name: brightnessTemperature
+           channels: *atms_npp_channels
+         action:
+           name: inflate error
+           inflation variable:
+             name: ObsErrorFactorTransmitTop@DerivedMetaData
+             channels: *atms_npp_channels
+
+       # Step 8: Observation Error Inflation based on Surface Jacobian Check
+       - filter: Variable Assignment
+         assignments:
+         - name: ObsErrorFactorSurfJacobian@DerivedMetaData
+           channels: *atms_npp_channels
+           type: float
+           function:
+             name: ObsErrorFactorSurfJacobianRad@ObsFunction
+             channels: *atms_npp_channels
+             options:
+               sensor: atms_npp
+               channels: *atms_npp_channels
+               obserr_demisf: [0.010, 0.020, 0.015, 0.020, 0.200]
+               obserr_dtempf: [0.500, 2.000, 1.000, 2.000, 4.500]
+
+       - filter: Perform Action
+         filter variables:
+         - name: brightnessTemperature
+           channels: *atms_npp_channels
+         action:
+           name: inflate error
+           inflation variable:
+             name: ObsErrorFactorSurfJacobian@DerivedMetaData
+             channels: *atms_npp_channels
+
+       # Step 9: Situation Dependent Check
+       - filter: Variable Assignment
+         assignments:
+         - name: ObsErrorFactorSituDepend@DerivedMetaData
+           channels: *atms_npp_channels
+           type: float
+           function:
+             name: ObsErrorFactorSituDependMW@ObsFunction
+             channels: *atms_npp_channels
+             options:
+               sensor: atms_npp
+               channels: *atms_npp_channels
+               clwbkg_function:
+                 name: CLWRetFromBkg@DerivedMetaData
+               clwobs_function:
+                 name: CLWRetFromObs@DerivedMetaData
+               scatobs_function:
+                 name: SIRetFromObs@DerivedMetaData
+               clwmatchidx_function:
+                 name: CLWMatchIndex@DerivedMetaData
+                 channels: *atms_npp_channels
+               obserr_function:
+                 name: InitialObsError@DerivedMetaData
+                 channels: *atms_npp_channels
+               obserr_clearsky:  [ 4.500,  4.500,  4.500,  2.500,  0.550,
+                                   0.300,  0.300,  0.400,  0.400,  0.400,
+                                   0.450,  0.450,  0.550,  0.800,  4.000,
+                                   4.000,  4.000,  3.500,  3.000,  3.000,
+                                   3.000,  3.000]
+
+       - filter: Perform Action
+         filter variables:
+         - name: brightnessTemperature
+           channels: *atms_npp_channels
+         action:
+           name: inflate error
+           inflation variable:
+             name: ObsErrorFactorSituDepend@DerivedMetaData
+             channels: *atms_npp_channels
+ 
+       # Step 10: Gross check
+       # Remove data if abs(Obs-HofX) > absolute threhold
+       - filter: Variable Assignment
+         assignments:
+         - name: ObsErrorFactorLat@DerivedMetaData
+           type: float
+           function:
+             name: ObsErrorFactorLatRad@ObsFunction
+             options:
+               latitude_parameters: [25.0, 0.25, 0.04, 3.0]
+
+       - filter: Variable Assignment
+         assignments:
+         - name: ObsErrorBound@DerivedMetaData
+           channels: *atms_npp_channels
+           type: float
+           function:
+             name: ObsErrorBoundMW@ObsFunction
+             channels: *atms_npp_channels
+             options:
+               sensor: atms_npp
+               channels: *atms_npp_channels
+               obserr_bound_latitude:
+                 name: ObsErrorFactorLat@DerivedMetaData
+               obserr_bound_transmittop:
+                 name: ObsErrorFactorTransmitTop@DerivedMetaData
+                 channels: *atms_npp_channels
+                 options:
+                   channels: *atms_npp_channels
+               obserr_bound_topo:
+                 name: ObsErrorFactorTopo@DerivedMetaData
+                 channels: *atms_npp_channels
+               obserr_function:
+                 name: InitialObsError@DerivedMetaData
+                 channels: *atms_npp_channels
+                 threhold: 3
+               obserr_bound_max: [4.5, 4.5, 3.0, 3.0, 1.0,
+                                  1.0, 1.0, 1.0, 1.0, 1.0,
+                                  1.0, 1.0, 1.0, 2.0, 4.5,
+                                  4.5, 2.0, 2.0, 2.0, 2.0,
+                                  2.0, 2.0]
+
+       - filter: Background Check
+         filter variables:
+         - name: brightnessTemperature
+           channels: *atms_npp_channels
+         function absolute threshold:
+         - name: ObsErrorBound@DerivedMetaData
+           channels: *atms_npp_channels
+         actions:
+           - name: set
+             flag: GrossCheck
+             ignore: rejected observations
+           - name: reject
+
+       # Step 11: Inter-Channel Check
+       - filter: Bounds Check
+         filter variables:
+         - name: brightnessTemperature
+           channels: *atms_npp_channels
+         test variables:
+         - name: InterChannelConsistencyCheck@ObsFunction
+           channels: *atms_npp_channels
+           options:
+             channels: *atms_npp_channels
+             use passive_bc: true
+             sensor: atms_npp
+             use_flag: [ 1,  1,  1,  1,  1,
+                         1,  1,  1,  1,  1,
+                         1,  1,  1,  1,  4,
+                         1,  1,  1,  1,  1,
+                         1,  1]
+         maxvalue: 1.0e-12
+         actions:
+           - name: set
+             flag: InterChannelConsistency
+             ignore: rejected observations
+           - name: reject
+
+       # Step 12: Useflag Check
+       - filter: Bounds Check
+         filter variables:
+         - name: brightnessTemperature
+           channels: *atms_npp_channels
+         test variables:
+         - name: ObsFunction/ChannelUseflagCheckRad
+           channels: *atms_npp_channels
+           options:
+             channels: *atms_npp_channels
+             use_flag: [ 1,  1,  1,  1,  1,
+                         1,  1,  1,  1,  1,
+                         1,  1,  1,  1,  4,
+                         1,  1,  1,  1,  1,
+                         1,  1]
+         minvalue: 1.0e-12
+         actions:
+           - name: set
+             flag: UseflagCheck
+             ignore: rejected observations
+           - name: reject
+
 
 
 driver:
